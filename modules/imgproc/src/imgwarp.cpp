@@ -339,7 +339,7 @@ static void remapNearest( const Mat& _src, Mat& _dst, const Mat& _xy,
     for(int k = 0; k < cn; k++ )
         cval[k] = saturate_cast<T>(_borderValue[k & 3]);
 
-    unsigned width1 = ssize.width, height1 = ssize.height;
+    unsigned width1 = (unsigned)ssize.width, height1 = (unsigned)ssize.height;
 
     if( _dst.isContinuous() && _xy.isContinuous() )
     {
@@ -664,11 +664,11 @@ static void remapBilinear( const Mat& _src, Mat& _dst, const Mat& _xy,
     for(int k = 0; k < cn; k++ )
         cval[k] = saturate_cast<T>(_borderValue[k & 3]);
 
-    unsigned width1 = std::max(ssize.width-1, 0), height1 = std::max(ssize.height-1, 0);
+    unsigned width1 = (unsigned)std::max(ssize.width-1, 0), height1 = (unsigned)std::max(ssize.height-1, 0);
     CV_Assert( !ssize.empty() );
 #if CV_SIMD128
     if( _src.type() == CV_8UC3 )
-        width1 = std::max(ssize.width-2, 0);
+        width1 = (unsigned)std::max(ssize.width-2, 0);
 #endif
 
     for(int dy = 0; dy < dsize.height; dy++ )
@@ -876,7 +876,7 @@ static void remapBicubic( const Mat& _src, Mat& _dst, const Mat& _xy,
 
     int borderType1 = borderType != BORDER_TRANSPARENT ? borderType : BORDER_REFLECT_101;
 
-    unsigned width1 = std::max(ssize.width-3, 0), height1 = std::max(ssize.height-3, 0);
+    unsigned width1 = (unsigned)std::max(ssize.width-3, 0), height1 = (unsigned)std::max(ssize.height-3, 0);
 
     if( _dst.isContinuous() && _xy.isContinuous() && _fxy.isContinuous() )
     {
@@ -980,7 +980,7 @@ static void remapLanczos4( const Mat& _src, Mat& _dst, const Mat& _xy,
 
     int borderType1 = borderType != BORDER_TRANSPARENT ? borderType : BORDER_REFLECT_101;
 
-    unsigned width1 = std::max(ssize.width-7, 0), height1 = std::max(ssize.height-7, 0);
+    unsigned width1 = (unsigned)std::max(ssize.width-7, 0), height1 = (unsigned)std::max(ssize.height-7, 0);
 
     if( _dst.isContinuous() && _xy.isContinuous() && _fxy.isContinuous() )
     {

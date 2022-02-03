@@ -465,7 +465,7 @@ bool  TiffDecoder::readData( Mat& img )
             }
         }
 
-        uint32 tile_width0 = m_width, tile_height0 = 0;
+        uint32 tile_width0 = (uint32)m_width, tile_height0 = 0U;
 
         if (is_tiled)
         {
@@ -480,11 +480,11 @@ bool  TiffDecoder::readData( Mat& img )
 
         {
             if (tile_width0 == 0)
-                tile_width0 = m_width;
+                tile_width0 = (uint32)m_width;
 
             if (tile_height0 == 0 ||
                     (!is_tiled && tile_height0 == std::numeric_limits<uint32>::max()) )
-                tile_height0 = m_height;
+                tile_height0 = (uint32)m_height;
 
             const int TILE_MAX_WIDTH = (1 << 24);
             const int TILE_MAX_HEIGHT = (1 << 24);

@@ -69,7 +69,7 @@ inline unsigned int trailingZeros32(unsigned int value) {
     return _tzcnt_u32(value);
 #endif
 #elif defined(__GNUC__) || defined(__GNUG__)
-    return __builtin_ctz(value);
+    return (unsigned int)__builtin_ctz(value);
 #elif defined(__ICC) || defined(__INTEL_COMPILER)
     return _bit_scan_forward(value);
 #elif defined(__clang__)

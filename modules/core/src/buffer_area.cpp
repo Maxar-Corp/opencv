@@ -19,7 +19,7 @@ class BufferArea::Block
 private:
     inline size_t reserve_count() const
     {
-        return alignment / type_size - 1;
+        return (size_t)(alignment / type_size - 1U);
     }
 public:
     Block(void **ptr_, ushort type_size_, size_t count_, ushort alignment_)

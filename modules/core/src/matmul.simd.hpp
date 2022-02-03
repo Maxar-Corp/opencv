@@ -1071,7 +1071,7 @@ static void gemmImpl( Mat A, Mat B, double alpha,
 
     if( (d_size.width == 1 || len == 1) && !(flags & GEMM_2_T) && B.isContinuous() )
     {
-        b_step = d_size.width == 1 ? 0 : CV_ELEM_SIZE(type);
+        b_step = d_size.width == 1 ? 0U : (size_t)CV_ELEM_SIZE(type);
         flags |= GEMM_2_T;
     }
 
@@ -1161,14 +1161,14 @@ static void gemmImpl( Mat A, Mat B, double alpha,
         int work_elem_size = elem_size << (CV_MAT_DEPTH(type) == CV_32F ? 1 : 0);
 
         if( !is_a_t )
-            a_step0 = A.step, a_step1 = elem_size;
+            a_step0 = A.step, a_step1 = (size_t)elem_size;
         else
-            a_step0 = elem_size, a_step1 = A.step;
+            a_step0 = (size_t)elem_size, a_step1 = A.step;
 
         if( !is_b_t )
-            b_step0 = b_step, b_step1 = elem_size;
+            b_step0 = b_step, b_step1 = (size_t)elem_size;
         else
-            b_step0 = elem_size, b_step1 = b_step;
+            b_step0 = (size_t)elem_size, b_step1 = b_step;
 
         if( C.empty() )
         {
@@ -1176,9 +1176,9 @@ static void gemmImpl( Mat A, Mat B, double alpha,
             flags &= ~GEMM_3_T;
         }
         else if( !(flags & GEMM_3_T) )
-            c_step0 = C.step, c_step1 = elem_size;
+            c_step0 = C.step, c_step1 = (size_t)elem_size;
         else
-            c_step0 = elem_size, c_step1 = C.step;
+            c_step0 = (size_t)elem_size, c_step1 = C.step;
 
         dm0 = std::min( block_lin_size, d_size.height );
         dn0 = std::min( block_lin_size, d_size.width );

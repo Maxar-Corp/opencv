@@ -214,7 +214,7 @@ static void histPrepareImages( const Mat* images, int nimages, const int* channe
     {
         for( i = 0; i < dims; i++ )
         {
-            size_t n = histSize[i];
+            size_t n = (size_t)histSize[(size_t)i];
             for(size_t k = 0; k < n; k++ )
                 CV_Assert( ranges[i][k] < ranges[i][k+1] );
         }

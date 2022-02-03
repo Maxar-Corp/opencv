@@ -204,7 +204,7 @@ QRImpl(_Tp* A, size_t astep, int m, int n, int k, _Tp* b, size_t bstep, _Tp* hFa
     bstep /= sizeof(_Tp);
 
     cv::AutoBuffer<_Tp> buffer;
-    size_t buf_size = m ? m + n : hFactors != NULL;
+    size_t buf_size = m ? (size_t)(m + n) : (size_t)(hFactors != NULL);
     buffer.allocate(buf_size);
     _Tp* vl = buffer.data();
     if (hFactors == NULL)

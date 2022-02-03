@@ -2489,8 +2489,8 @@ void cv::drawContours( InputOutputArray _image, InputArrayOfArrays _contours,
     if( contourIdx >= 0 )
     {
         CV_Assert( 0 <= contourIdx && contourIdx < (int)last );
-        first = contourIdx;
-        last = contourIdx + 1;
+        first = (size_t)contourIdx;
+        last = (size_t)contourIdx + 1;
     }
 
     for( i = first; i < last; i++ )

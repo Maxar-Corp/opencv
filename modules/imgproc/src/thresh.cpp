@@ -133,7 +133,7 @@ thresh_8u( const Mat& _src, Mat& _dst, uchar thresh, uchar maxval, int type )
     {
         roi.width *= roi.height;
         roi.height = 1;
-        src_step = dst_step = roi.width;
+        src_step = dst_step = (size_t)roi.width;
     }
 
 #if defined(HAVE_IPP)
@@ -344,7 +344,7 @@ thresh_16u(const Mat& _src, Mat& _dst, ushort thresh, ushort maxval, int type)
     {
         roi.width *= roi.height;
         roi.height = 1;
-        src_step = dst_step = roi.width;
+        src_step = dst_step = (size_t)roi.width;
     }
 
     // HAVE_IPP not supported
@@ -517,7 +517,7 @@ thresh_16s( const Mat& _src, Mat& _dst, short thresh, short maxval, int type )
     {
         roi.width *= roi.height;
         roi.height = 1;
-        src_step = dst_step = roi.width;
+        src_step = dst_step = (size_t)roi.width;
     }
 
 #if defined(HAVE_IPP)

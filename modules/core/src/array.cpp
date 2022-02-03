@@ -799,7 +799,7 @@ cvCreateData( CvArr* arr )
     {
         size_t step, total_size;
         CvMat* mat = (CvMat*)arr;
-        step = mat->step;
+        step = (size_t)mat->step;
 
         if( mat->rows == 0 || mat->cols == 0 )
             return;
