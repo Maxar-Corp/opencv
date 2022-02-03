@@ -1791,7 +1791,7 @@ public:
                 {
                     if (threads[slot] == NULL)
                     {
-                        threadData->idx = (int)slot;
+                        threadData->idx = slot;
                         threads[slot] = threadData;
                         found = true;
                         break;

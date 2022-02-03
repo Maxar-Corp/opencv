@@ -97,7 +97,7 @@ void GpuMatND::setFields(SizeArray _size, int _type, StepArray _step)
         step.back() = elemSize();
         for (int _i = dims - 2; _i >= 0; --_i)
         {
-            const size_t i = _i;
+            const size_t i = (size_t)_i;
             step[i] = step[i+1] * size[i+1];
         }
 

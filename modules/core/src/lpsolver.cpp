@@ -216,7 +216,7 @@ static int initialize_simplex(Mat_<double>& c, Mat_<double>& b,double& v,vector<
         int iterator_offset=indexToRow[0];
         iterator=N.begin()+iterator_offset;
         std::iter_swap(iterator,N.begin());
-        SWAP(int,indexToRow[*iterator],indexToRow[0]);
+        SWAP(unsigned int,indexToRow[*iterator],indexToRow[0]);
         swap_columns(c,iterator_offset,0);
         swap_columns(b,iterator_offset,0);
     }
@@ -355,7 +355,7 @@ static inline void pivot(Mat_<double>& c,Mat_<double>& b,double& v,vector<int>& 
     v+=Coef*b(leaving_index,b.cols-1);
 
     SWAP(int,N[entering_index],B[leaving_index]);
-    SWAP(int,indexToRow[N[entering_index]],indexToRow[B[leaving_index]]);
+    SWAP(unsigned int,indexToRow[N[entering_index]],indexToRow[B[leaving_index]]);
 }
 
 static inline void swap_columns(Mat_<double>& A,int col1,int col2){

@@ -674,7 +674,7 @@ size_t Mat::elemSize() const
 inline
 size_t Mat::elemSize1() const
 {
-    return CV_ELEM_SIZE1(flags);
+    return (size_t)CV_ELEM_SIZE1(flags);
 }
 
 inline
@@ -1871,13 +1871,13 @@ SparseMat SparseMat::clone() const
 inline
 size_t SparseMat::elemSize() const
 {
-    return CV_ELEM_SIZE(flags);
+    return (size_t)CV_ELEM_SIZE(flags);
 }
 
 inline
 size_t SparseMat::elemSize1() const
 {
-    return CV_ELEM_SIZE1(flags);
+    return (size_t)CV_ELEM_SIZE1(flags);
 }
 
 inline
@@ -3345,7 +3345,7 @@ size_t UMat::elemSize() const
 inline
 size_t UMat::elemSize1() const
 {
-    return CV_ELEM_SIZE1(flags);
+    return (size_t)CV_ELEM_SIZE1(flags);
 }
 
 inline

@@ -947,7 +947,7 @@ void Mat::pop_back(size_t nelems)
 
 void Mat::push_back_(const void* elem)
 {
-    size_t r = size.p[0];
+    size_t r = (size_t)size.p[0];
     if( isSubmatrix() || dataend + step.p[0] > datalimit )
         reserve( std::max(r + 1, (r*3+1)/2) );
 
@@ -955,7 +955,7 @@ void Mat::push_back_(const void* elem)
     memcpy(data + r*step.p[0], elem, esz);
     size.p[0] = int(r + 1);
     dataend += step.p[0];
-    uint64 tsz = size.p[0];
+    uint64 tsz = (uint64)size.p[0];
     for( int i = 1; i < dims; i++ )
         tsz *= size.p[i];
     if( esz < step.p[0] || tsz != (uint64)(int)tsz )
@@ -1054,8 +1054,8 @@ void Mat::resize(size_t nelems, const Scalar& s)
 
 void Mat::push_back(const Mat& elems)
 {
-    size_t r = size.p[0];
-    size_t delta = elems.size.p[0];
+    size_t r = (size_t)size.p[0];
+    size_t delta = (size_t)elems.size.p[0];
     if( delta == 0 )
         return;
     if( this == &elems )
@@ -1220,7 +1220,7 @@ Mat Mat::reshape(int _cn, int _newndims, const int* _newsz) const
             CV_Assert(_cn <= CV_CN_MAX);
 
         size_t total_elem1_ref = this->total() * this->channels();
-        size_t total_elem1 = _cn;
+        size_t total_elem1 = (size_t)_cn;
 
         AutoBuffer<int, 4> newsz_buf( (size_t)_newndims );
 

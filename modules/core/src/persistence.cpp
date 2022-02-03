@@ -886,7 +886,7 @@ char *FileStorage::Impl::resizeWriteBuffer(char *ptr, int len) {
     new_size = MAX(written_len + len, new_size);
     buffer.reserve(new_size + 256);
     buffer.resize(new_size);
-    bufofs = written_len;
+    bufofs = (size_t)written_len;
     return &buffer[0] + bufofs;
 }
 
@@ -907,7 +907,7 @@ char *FileStorage::Impl::flush() {
         memset(buffer_start, ' ', indent);
         space = indent;
     }
-    bufofs = space;
+    bufofs = (size_t)space;
     ptr = buffer_start + bufofs;
 
     return ptr;

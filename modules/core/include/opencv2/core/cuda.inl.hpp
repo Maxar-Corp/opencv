@@ -298,13 +298,13 @@ bool GpuMat::isContinuous() const
 inline
 size_t GpuMat::elemSize() const
 {
-    return CV_ELEM_SIZE(flags);
+    return (size_t)CV_ELEM_SIZE(flags);
 }
 
 inline
 size_t GpuMat::elemSize1() const
 {
-    return CV_ELEM_SIZE1(flags);
+    return (size_t)CV_ELEM_SIZE1(flags);
 }
 
 inline
@@ -421,13 +421,13 @@ bool GpuMatND::isSubmatrix() const
 inline
 size_t GpuMatND::elemSize() const
 {
-    return CV_ELEM_SIZE(flags);
+    return (size_t)CV_ELEM_SIZE(flags);
 }
 
 inline
 size_t GpuMatND::elemSize1() const
 {
-    return CV_ELEM_SIZE1(flags);
+    return (size_t)CV_ELEM_SIZE1(flags);
 }
 
 inline
@@ -571,13 +571,13 @@ bool HostMem::isContinuous() const
 inline
 size_t HostMem::elemSize() const
 {
-    return CV_ELEM_SIZE(flags);
+    return (size_t)CV_ELEM_SIZE(flags);
 }
 
 inline
 size_t HostMem::elemSize1() const
 {
-    return CV_ELEM_SIZE1(flags);
+    return (size_t)CV_ELEM_SIZE1(flags);
 }
 
 inline

@@ -174,7 +174,7 @@ void _InputArray::getMatVector(std::vector<Mat>& mv) const
 
     if (k == MATX)
     {
-        size_t n = sz.height, esz = CV_ELEM_SIZE(flags);
+        size_t n = (size_t)sz.height, esz = (size_t)CV_ELEM_SIZE(flags);
         mv.resize(n);
 
         for( size_t i = 0; i < n; i++ )
@@ -186,7 +186,7 @@ void _InputArray::getMatVector(std::vector<Mat>& mv) const
     {
         const std::vector<uchar>& v = *(const std::vector<uchar>*)obj;
 
-        size_t n = size().width, esz = CV_ELEM_SIZE(flags);
+        size_t n = (size_t)size().width, esz = (size_t)CV_ELEM_SIZE(flags);
         int t = CV_MAT_DEPTH(flags), cn = CV_MAT_CN(flags);
         mv.resize(n);
 
@@ -230,7 +230,7 @@ void _InputArray::getMatVector(std::vector<Mat>& mv) const
     if( k == STD_ARRAY_MAT )
     {
         const Mat* v = (const Mat*)obj;
-        size_t n = sz.height;
+        size_t n = (size_t)sz.height;
         mv.resize(n);
 
         for( size_t i = 0; i < n; i++ )
@@ -277,7 +277,7 @@ void _InputArray::getUMatVector(std::vector<UMat>& umv) const
     if( k == STD_ARRAY_MAT )
     {
         const Mat* v = (const Mat*)obj;
-        size_t n = sz.height;
+        size_t n = (size_t)sz.height;
         umv.resize(n);
 
         for( size_t i = 0; i < n; i++ )
@@ -732,7 +732,7 @@ size_t _InputArray::total(int i) const
     {
         const Mat* vv = (const Mat*)obj;
         if( i < 0 )
-            return sz.height;
+            return (size_t)sz.height;
 
         CV_Assert( i < sz.height );
         return vv[i].total();
@@ -748,7 +748,7 @@ size_t _InputArray::total(int i) const
         return vv[i].total();
     }
 
-    return size(i).area();
+    return (size_t)size(i).area();
 }
 
 int _InputArray::type(int i) const
@@ -1542,7 +1542,7 @@ void _OutputArray::create(int d, const int* sizes, int mtype, int i,
         if( i < 0 )
         {
             CV_Assert( d == 2 && (sizes[0] == 1 || sizes[1] == 1 || sizes[0]*sizes[1] == 0) );
-            size_t len = sizes[0]*sizes[1] > 0 ? sizes[0] + sizes[1] - 1 : 0, len0 = sz.height;
+            size_t len = sizes[0]*sizes[1] > 0 ? (size_t)(sizes[0] + sizes[1] - 1 ) : 0U, len0 = (size_t)sz.height;
 
             CV_Assert(len == len0);
             if( fixedType() )

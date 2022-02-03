@@ -336,7 +336,7 @@ void Mat::copyTo( OutputArray _dst ) const
         size_t i, sz[CV_MAX_DIM] = {0}, dstofs[CV_MAX_DIM], esz = elemSize();
         CV_Assert(dims > 0 && dims < CV_MAX_DIM);
         for( i = 0; i < (size_t)dims; i++ )
-            sz[i] = size.p[i];
+            sz[i] = (size_t)size.p[i];
         sz[dims-1] *= esz;
         dst.ndoffset(dstofs);
         dstofs[dims-1] *= esz;

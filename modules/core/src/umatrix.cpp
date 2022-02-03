@@ -1037,7 +1037,7 @@ UMat UMat::reshape(int _cn, int _newndims, const int* _newsz) const
             CV_Assert(_cn <= CV_CN_MAX);
 
         size_t total_elem1_ref = this->total() * this->channels();
-        size_t total_elem1 = _cn;
+        size_t total_elem1 = (size_t)_cn;
 
         AutoBuffer<int, 4> newsz_buf( (size_t)_newndims );
 
@@ -1158,7 +1158,7 @@ void UMat::copyTo(OutputArray _dst) const
 
     size_t i, sz[CV_MAX_DIM] = {0}, srcofs[CV_MAX_DIM], dstofs[CV_MAX_DIM], esz = elemSize();
     for( i = 0; i < (size_t)dims; i++ )
-        sz[i] = size.p[i];
+        sz[i] = (size_t)size.p[i];
     sz[dims-1] *= esz;
     ndoffset(srcofs);
     srcofs[dims-1] *= esz;

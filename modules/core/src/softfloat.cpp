@@ -639,7 +639,8 @@ static inline struct uint128 softfloat_shortShiftLeft128( uint64_t a64, uint64_t
 *----------------------------------------------------------------------------*/
 static inline struct uint128 softfloat_shortShiftRightJam128(uint64_t a64, uint64_t a0, uint_fast8_t dist )
 {
-    uint_fast8_t negDist = -dist;
+    // fixed unsigned unary minus: -x == ~x + 1 , fixed type cast
+    uint_fast8_t negDist =(uint_fast8_t)(~dist + 1);
     struct uint128 z;
     z.v64 = a64>>dist;
     z.v0 =

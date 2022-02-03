@@ -3709,7 +3709,7 @@ void cv::mulSpectrums( InputArray _srcA, InputArray _srcB,
 
     Mat srcA = _srcA.getMat(), srcB = _srcB.getMat();
     int depth = srcA.depth(), cn = srcA.channels(), type = srcA.type();
-    size_t rows = srcA.rows, cols = srcA.cols;
+    size_t rows = (size_t)srcA.rows, cols = (size_t)srcA.cols;
 
     CV_Assert( type == srcB.type() && srcA.size() == srcB.size() );
     CV_Assert( type == CV_32FC1 || type == CV_32FC2 || type == CV_64FC1 || type == CV_64FC2 );
@@ -4281,8 +4281,8 @@ public:
         AutoBuffer<uchar> src_buf, dst_buf;
         uchar *src_dft_buf = 0, *dst_dft_buf = 0;
         int prev_len = 0;
-        int elem_size = (depth == CV_32F) ? sizeof(float) : sizeof(double);
-        int complex_elem_size = elem_size*2;
+        size_t elem_size = (depth == CV_32F) ? sizeof(float) : sizeof(double);
+        size_t complex_elem_size = elem_size*2;
 
         for(int stage = start_stage ; stage <= end_stage; stage++ )
         {

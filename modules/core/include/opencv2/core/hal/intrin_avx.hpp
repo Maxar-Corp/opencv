@@ -1213,7 +1213,7 @@ inline int v_reduce_sum(const v_int32x8& a)
 }
 
 inline unsigned v_reduce_sum(const v_uint32x8& a)
-{ return v_reduce_sum(v_reinterpret_as_s32(a)); }
+{ return (unsigned)v_reduce_sum(v_reinterpret_as_s32(a)); }
 
 inline int v_reduce_sum(const v_int16x16& a)
 { return v_reduce_sum(v_expand_low(a) + v_expand_high(a)); }

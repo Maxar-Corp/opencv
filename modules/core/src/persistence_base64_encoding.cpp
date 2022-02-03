@@ -47,7 +47,7 @@ public:
 
         while (beg < end) {
             /* collect binary data and copy to binary buffer */
-            size_t len = std::min(end - beg, src_end - src_cur);
+            size_t len = (size_t)std::min(end - beg, src_end - src_cur);
             std::memcpy(src_cur, beg, len);
             beg     += len;
             src_cur += len;

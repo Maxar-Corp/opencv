@@ -427,11 +427,11 @@ template<> inline int64_t saturate_cast<int64_t>(softdouble a) { return cvRound6
 /** @brief Saturate cast to unsigned integer and unsigned long long integer
 We intentionally do not clip negative numbers, to make -1 become 0xffffffff etc.
 */
-template<> inline unsigned saturate_cast<unsigned>(softfloat  a) { return cvRound(a); }
-template<> inline unsigned saturate_cast<unsigned>(softdouble a) { return cvRound(a); }
+template<> inline unsigned saturate_cast<unsigned>(softfloat  a) { return saturate_cast<unsigned>(cvRound(a)); }
+template<> inline unsigned saturate_cast<unsigned>(softdouble a) { return saturate_cast<unsigned>(cvRound(a)); }
 
-template<> inline uint64_t saturate_cast<uint64_t>(softfloat  a) { return cvRound(a); }
-template<> inline uint64_t saturate_cast<uint64_t>(softdouble a) { return cvRound64(a); }
+template<> inline uint64_t saturate_cast<uint64_t>(softfloat  a) { return saturate_cast<uint64_t>(cvRound(a)); }
+template<> inline uint64_t saturate_cast<uint64_t>(softdouble a) { return saturate_cast<uint64_t>(cvRound64(a)); }
 
 /** @brief Min and Max functions */
 inline softfloat  min(const softfloat&  a, const softfloat&  b) { return (a > b) ? b : a; }

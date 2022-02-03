@@ -45,7 +45,7 @@ static Mat cvMatToMat(const CvMat* m, bool copyData)
         thiz.rows = m->rows;
         thiz.cols = m->cols;
         thiz.datastart = thiz.data = m->data.ptr;
-        size_t esz = CV_ELEM_SIZE(m->type), minstep = thiz.cols*esz, _step = m->step;
+        size_t esz = (size_t)CV_ELEM_SIZE(m->type), minstep = (size_t)thiz.cols*esz, _step = (size_t)m->step;
         if( _step == 0 )
             _step = minstep;
         thiz.datalimit = thiz.datastart + _step*thiz.rows;
@@ -76,7 +76,7 @@ static Mat cvMatNDToMat(const CvMatND* m, bool copyData)
     for( int i = 0; i < d; i++ )
     {
         _sizes[i] = m->dim[i].size;
-        _steps[i] = m->dim[i].step;
+        _steps[i] = (size_t)m->dim[i].step;
     }
 
     setSize(thiz, d, _sizes, _steps);
@@ -104,7 +104,7 @@ static Mat iplImageToMat(const IplImage* img, bool copyData)
 
     int imgdepth = IPL2CV_DEPTH(img->depth);
     size_t esz;
-    m.step[0] = img->widthStep;
+    m.step[0] = (size_t)img->widthStep;
 
     if(!img->roi)
     {

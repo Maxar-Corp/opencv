@@ -1074,14 +1074,14 @@ struct mRGBA2RGBA<uchar>
 
             uchar v3_half = v3 / 2;
 
-            dst[0] = (v3==0)? 0 : (v0 * max_val + v3_half) / v3;
-            dst[1] = (v3==0)? 0 : (v1 * max_val + v3_half) / v3;
-            dst[2] = (v3==0)? 0 : (v2 * max_val + v3_half) / v3;
+            dst[0] = (v3==0)? 0U : (v0 * max_val + v3_half) / v3;
+            dst[1] = (v3==0)? 0U : (v1 * max_val + v3_half) / v3;
+            dst[2] = (v3==0)? 0U : (v2 * max_val + v3_half) / v3;
             dst[3] = v3;
 
-            dst[0] = (v3==0)? 0 : saturate_cast<uchar>((v0 * max_val + v3_half) / v3);
-            dst[1] = (v3==0)? 0 : saturate_cast<uchar>((v1 * max_val + v3_half) / v3);
-            dst[2] = (v3==0)? 0 : saturate_cast<uchar>((v2 * max_val + v3_half) / v3);
+            dst[0] = (v3==0)? 0U : saturate_cast<uchar>((v0 * max_val + v3_half) / v3);
+            dst[1] = (v3==0)? 0U : saturate_cast<uchar>((v1 * max_val + v3_half) / v3);
+            dst[2] = (v3==0)? 0U : saturate_cast<uchar>((v2 * max_val + v3_half) / v3);
             dst[3] = v3;
         }
     }

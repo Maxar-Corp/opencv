@@ -46,7 +46,7 @@
 //  Arithmetic and logical operations: +, -, *, /, &, |, ^, ~, abs ...
 //
 // */
-
+#include <cassert>
 #include "precomp.hpp"
 #include "opencl_kernels_core.hpp"
 
@@ -1561,7 +1561,7 @@ static void inRange64f(const double* src1, size_t step1, const double* src2, siz
 
 static void inRangeReduce(const uchar* src, uchar* dst, size_t len, int cn)
 {
-    int k = cn % 4 ? cn % 4 : 4;
+    size_t k = cn % 4 ? (size_t)(cn % 4) : 4U;
     size_t i, j;
     if( k == 1 )
         for( i = j = 0; i < len; i++, j += cn )
@@ -1576,7 +1576,7 @@ static void inRangeReduce(const uchar* src, uchar* dst, size_t len, int cn)
         for( i = j = 0; i < len; i++, j += cn )
             dst[i] = src[j] & src[j+1] & src[j+2] & src[j+3];
 
-    for( ; k < cn; k += 4 )
+    for( ; k < (size_t)cn; k += 4 )
     {
         for( i = 0, j = k; i < len; i++, j += cn )
             dst[i] &= src[j] & src[j+1] & src[j+2] & src[j+3];

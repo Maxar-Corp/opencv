@@ -248,7 +248,7 @@ bool  JpegDecoder::readHeader()
             jpeg_read_header( &state->cinfo, TRUE );
 
             state->cinfo.scale_num=1;
-            state->cinfo.scale_denom = m_scale_denom;
+            state->cinfo.scale_denom = (unsigned int)m_scale_denom;
             m_scale_denom=1; // trick! to know which decoder used scale_denom see imread_
             jpeg_calc_output_dimensions(&state->cinfo);
             m_width = state->cinfo.output_width;
@@ -626,8 +626,8 @@ bool JpegEncoder::write( const Mat& img, const std::vector<int>& params )
 
     if( setjmp( jerr.setjmp_buffer ) == 0 )
     {
-        cinfo.image_width = width;
-        cinfo.image_height = height;
+        cinfo.image_width = (JDIMENSION)width;
+        cinfo.image_height = (JDIMENSION)height;
 
         int _channels = img.channels();
         int channels = _channels > 1 ? 3 : 1;
@@ -690,7 +690,7 @@ bool JpegEncoder::write( const Mat& img, const std::vector<int>& params )
         }
 
         jpeg_set_defaults( &cinfo );
-        cinfo.restart_interval = rst_interval;
+        cinfo.restart_interval = (unsigned int)rst_interval;
 
         jpeg_set_quality( &cinfo, quality,
                           TRUE /* limit to baseline-JPEG values */ );
