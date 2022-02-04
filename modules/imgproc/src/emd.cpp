@@ -983,6 +983,10 @@ icvRussel( CvEMDState * state )
         if( min_i < 0 )
             break;
 
+        if (prev_u_min_i == nullptr) {
+            break;
+        }
+
         /* add x[min_i][min_j] to the basis, and adjust supplies and cost */
         remember = prev_u_min_i->next;
         icvAddBasicVariable( state, min_i, min_j, prev_u_min_i, prev_v_min_j, &u_head );

@@ -49,7 +49,7 @@ public:
             struct_flags |= FileNode::FLOW;
 
             if( type_name )
-                sprintf( buf, "!!%s %c", type_name, c );
+                snprintf( buf, sizeof(buf), "!!%s %c", type_name, c );
             else
             {
                 buf[0] = c;
